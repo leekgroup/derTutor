@@ -120,7 +120,7 @@ Coming soon:
 
 ## {.flexbox .vcenter}
 
-![picture of tim's grant](images/tim-grant.PNG)
+<img alt = "tim's grant" height='560' src='images/tim-grant.PNG' />
 
 
 ## What will I need?
