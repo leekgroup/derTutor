@@ -207,7 +207,7 @@ names(files) &lt;- paste0(&#39;sample&#39;, 1:30)
 system.time( fullCov &lt;- fullCoverage(files, &#39;chr22&#39;, verbose = FALSE) )</pre>
 
 <pre >##    user  system elapsed 
-##   5.468   0.260  20.289</pre>
+##   4.862   0.087   9.348</pre>
 
 <pre class = 'prettyprint lang-r'>## You are using Windows?
 # Use http://lcolladotor.github.io/derTutor/data/fullCov.Rdata</pre>
@@ -218,7 +218,7 @@ system.time( fullCov &lt;- fullCoverage(files, &#39;chr22&#39;, verbose = FALSE)
 system.time( collapsedFull &lt;- collapseFullCoverage(fullCov) )</pre>
 
 <pre >##    user  system elapsed 
-##   6.230   0.146   6.409</pre>
+##   5.290   0.115   5.411</pre>
 
 <pre class = 'prettyprint lang-r'>lapply(collapsedFull[[1]], head)</pre>
 
@@ -230,39 +230,10 @@ system.time( collapsedFull &lt;- collapseFullCoverage(fullCov) )</pre>
 
 <pre class = 'prettyprint lang-r'>sampleDepths &lt;- sampleDepth(collapsedFull, probs = 1)</pre>
 
-<pre >## 2014-12-08 18:25:09 sampleDepth: Calculating sample quantiles
-## 2014-12-08 18:25:09 sampleDepth: Calculating sample adjustments</pre>
+<pre >## 2014-12-09 10:56:08 sampleDepth: Calculating sample quantiles
+## 2014-12-09 10:56:08 sampleDepth: Calculating sample adjustments</pre>
 
 </article></slide><slide class=''><hgroup><h2>Build models</h2></hgroup><article  id="build-models" class="smaller">
-
-<pre class = 'prettyprint lang-r'>summary(sampleDepths)</pre>
-
-<pre >##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   23.85   23.87   23.88   23.89   23.94   23.95</pre>
-
-<pre class = 'prettyprint lang-r'>## Calculate library size adjustment
-system.time( collapsedFull &lt;- collapseFullCoverage(fullCov) )</pre>
-
-<pre >##    user  system elapsed 
-##   6.070   0.126   6.226</pre>
-
-<pre class = 'prettyprint lang-r'>lapply(collapsedFull[[1]], head)</pre>
-
-<pre >## $values
-## [1] 0 1 2 3 4 5
-## 
-## $weights
-## [1] 51191562      441      300      196      159      209</pre>
-
-<pre class = 'prettyprint lang-r'>sampleDepths &lt;- sampleDepth(collapsedFull, probs = 1)</pre>
-
-<pre >## 2014-12-08 18:25:16 sampleDepth: Calculating sample quantiles
-## 2014-12-08 18:25:16 sampleDepth: Calculating sample adjustments</pre>
-
-<pre class = 'prettyprint lang-r'>summary(sampleDepths)</pre>
-
-<pre >##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   23.85   23.87   23.88   23.89   23.94   23.95</pre>
 
 <pre class = 'prettyprint lang-r'>## Create models
 groupInfo &lt;- factor(rep(c(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;), each = 10))
@@ -273,7 +244,7 @@ models &lt;- makeModels(sampleDepths = sampleDepths, testvars = groupInfo)</pre>
 <pre class = 'prettyprint lang-r'>## Filter Data
 covData &lt;- filterData(fullCov$chr22, cutoff = 0)</pre>
 
-<pre >## 2014-12-08 18:25:16 filterData: originally there were 51304566 rows, now there are 114584 rows. Meaning that 99.78 percent was filtered.</pre>
+<pre >## 2014-12-09 10:56:09 filterData: originally there were 51304566 rows, now there are 114584 rows. Meaning that 99.78 percent was filtered.</pre>
 
 <pre class = 'prettyprint lang-r'>## Run analysis for chr22
 dir.create(&#39;chr22&#39;, showWarnings = FALSE)
@@ -286,317 +257,317 @@ system.time(
         writeOutput = TRUE, returnOutput = TRUE)
 )</pre>
 
-<pre >## 2014-12-08 18:25:17 analyzeChr: Pre-processing the coverage data
-## 2014-12-08 18:25:31 analyzeChr: Calculating statistics
-## 2014-12-08 18:25:31 calculateStats: calculating the F-statistics
-## 2014-12-08 18:25:32 analyzeChr: Calculating pvalues
-## 2014-12-08 18:25:32 analyzeChr: Using the following theoretical cutoff for the F-statistics 9.11630563808366
-## 2014-12-08 18:25:32 calculatePvalues: identifying data segments
-## 2014-12-08 18:25:32 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:32 findRegions: identifying candidate regions
-## 2014-12-08 18:25:32 findRegions: identifying region clusters
-## 2014-12-08 18:25:32 calculatePvalues: calculating F-statistics for permutation 1 and seed 20141203
-## 2014-12-08 18:25:33 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:33 findRegions: identifying candidate regions
-## 2014-12-08 18:25:33 calculatePvalues: calculating F-statistics for permutation 2 and seed 20141204
-## 2014-12-08 18:25:33 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:33 findRegions: identifying candidate regions
-## 2014-12-08 18:25:34 calculatePvalues: calculating F-statistics for permutation 3 and seed 20141205
-## 2014-12-08 18:25:34 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:34 findRegions: identifying candidate regions
-## 2014-12-08 18:25:34 calculatePvalues: calculating F-statistics for permutation 4 and seed 20141206
-## 2014-12-08 18:25:35 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:35 findRegions: identifying candidate regions
-## 2014-12-08 18:25:35 calculatePvalues: calculating F-statistics for permutation 5 and seed 20141207
-## 2014-12-08 18:25:35 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:36 findRegions: identifying candidate regions
-## 2014-12-08 18:25:36 calculatePvalues: calculating F-statistics for permutation 6 and seed 20141208
-## 2014-12-08 18:25:36 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:36 findRegions: identifying candidate regions
-## 2014-12-08 18:25:36 calculatePvalues: calculating F-statistics for permutation 7 and seed 20141209
-## 2014-12-08 18:25:37 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:37 findRegions: identifying candidate regions
-## 2014-12-08 18:25:37 calculatePvalues: calculating F-statistics for permutation 8 and seed 20141210
-## 2014-12-08 18:25:38 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:38 findRegions: identifying candidate regions
-## 2014-12-08 18:25:38 calculatePvalues: calculating F-statistics for permutation 9 and seed 20141211
-## 2014-12-08 18:25:38 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:38 findRegions: identifying candidate regions
-## 2014-12-08 18:25:39 calculatePvalues: calculating F-statistics for permutation 10 and seed 20141212
-## 2014-12-08 18:25:39 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:39 findRegions: identifying candidate regions
-## 2014-12-08 18:25:39 calculatePvalues: calculating F-statistics for permutation 11 and seed 20141213
-## 2014-12-08 18:25:40 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:40 findRegions: identifying candidate regions
-## 2014-12-08 18:25:40 calculatePvalues: calculating F-statistics for permutation 12 and seed 20141214
-## 2014-12-08 18:25:41 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:41 findRegions: identifying candidate regions
-## 2014-12-08 18:25:41 calculatePvalues: calculating F-statistics for permutation 13 and seed 20141215
-## 2014-12-08 18:25:41 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:41 findRegions: identifying candidate regions
-## 2014-12-08 18:25:41 calculatePvalues: calculating F-statistics for permutation 14 and seed 20141216
-## 2014-12-08 18:25:42 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:42 findRegions: identifying candidate regions
-## 2014-12-08 18:25:42 calculatePvalues: calculating F-statistics for permutation 15 and seed 20141217
-## 2014-12-08 18:25:43 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:43 findRegions: identifying candidate regions
-## 2014-12-08 18:25:43 calculatePvalues: calculating F-statistics for permutation 16 and seed 20141218
-## 2014-12-08 18:25:43 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:43 findRegions: identifying candidate regions
-## 2014-12-08 18:25:43 calculatePvalues: calculating F-statistics for permutation 17 and seed 20141219
-## 2014-12-08 18:25:44 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:44 findRegions: identifying candidate regions
-## 2014-12-08 18:25:44 calculatePvalues: calculating F-statistics for permutation 18 and seed 20141220
-## 2014-12-08 18:25:45 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:45 findRegions: identifying candidate regions
-## 2014-12-08 18:25:45 calculatePvalues: calculating F-statistics for permutation 19 and seed 20141221
-## 2014-12-08 18:25:46 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:46 findRegions: identifying candidate regions
-## 2014-12-08 18:25:46 calculatePvalues: calculating F-statistics for permutation 20 and seed 20141222
-## 2014-12-08 18:25:47 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:47 findRegions: identifying candidate regions
-## 2014-12-08 18:25:47 calculatePvalues: calculating F-statistics for permutation 21 and seed 20141223
-## 2014-12-08 18:25:48 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:48 findRegions: identifying candidate regions
-## 2014-12-08 18:25:48 calculatePvalues: calculating F-statistics for permutation 22 and seed 20141224
-## 2014-12-08 18:25:49 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:49 findRegions: identifying candidate regions
-## 2014-12-08 18:25:49 calculatePvalues: calculating F-statistics for permutation 23 and seed 20141225
-## 2014-12-08 18:25:50 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:50 findRegions: identifying candidate regions
-## 2014-12-08 18:25:50 calculatePvalues: calculating F-statistics for permutation 24 and seed 20141226
-## 2014-12-08 18:25:51 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:51 findRegions: identifying candidate regions
-## 2014-12-08 18:25:51 calculatePvalues: calculating F-statistics for permutation 25 and seed 20141227
-## 2014-12-08 18:25:51 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:51 findRegions: identifying candidate regions
-## 2014-12-08 18:25:51 calculatePvalues: calculating F-statistics for permutation 26 and seed 20141228
-## 2014-12-08 18:25:52 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:52 findRegions: identifying candidate regions
-## 2014-12-08 18:25:52 calculatePvalues: calculating F-statistics for permutation 27 and seed 20141229
-## 2014-12-08 18:25:53 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:53 findRegions: identifying candidate regions
-## 2014-12-08 18:25:53 calculatePvalues: calculating F-statistics for permutation 28 and seed 20141230
-## 2014-12-08 18:25:53 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:53 findRegions: identifying candidate regions
-## 2014-12-08 18:25:53 calculatePvalues: calculating F-statistics for permutation 29 and seed 20141231
-## 2014-12-08 18:25:54 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:54 findRegions: identifying candidate regions
-## 2014-12-08 18:25:54 calculatePvalues: calculating F-statistics for permutation 30 and seed 20141232
-## 2014-12-08 18:25:55 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:55 findRegions: identifying candidate regions
-## 2014-12-08 18:25:55 calculatePvalues: calculating F-statistics for permutation 31 and seed 20141233
-## 2014-12-08 18:25:55 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:56 findRegions: identifying candidate regions
-## 2014-12-08 18:25:56 calculatePvalues: calculating F-statistics for permutation 32 and seed 20141234
-## 2014-12-08 18:25:56 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:56 findRegions: identifying candidate regions
-## 2014-12-08 18:25:56 calculatePvalues: calculating F-statistics for permutation 33 and seed 20141235
-## 2014-12-08 18:25:57 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:57 findRegions: identifying candidate regions
-## 2014-12-08 18:25:57 calculatePvalues: calculating F-statistics for permutation 34 and seed 20141236
-## 2014-12-08 18:25:58 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:58 findRegions: identifying candidate regions
-## 2014-12-08 18:25:58 calculatePvalues: calculating F-statistics for permutation 35 and seed 20141237
-## 2014-12-08 18:25:58 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:58 findRegions: identifying candidate regions
-## 2014-12-08 18:25:58 calculatePvalues: calculating F-statistics for permutation 36 and seed 20141238
-## 2014-12-08 18:25:59 findRegions: segmenting F-stats information
-## 2014-12-08 18:25:59 findRegions: identifying candidate regions
-## 2014-12-08 18:25:59 calculatePvalues: calculating F-statistics for permutation 37 and seed 20141239
-## 2014-12-08 18:26:00 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:00 findRegions: identifying candidate regions
-## 2014-12-08 18:26:00 calculatePvalues: calculating F-statistics for permutation 38 and seed 20141240
-## 2014-12-08 18:26:01 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:01 findRegions: identifying candidate regions
-## 2014-12-08 18:26:01 calculatePvalues: calculating F-statistics for permutation 39 and seed 20141241
-## 2014-12-08 18:26:01 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:01 findRegions: identifying candidate regions
-## 2014-12-08 18:26:01 calculatePvalues: calculating F-statistics for permutation 40 and seed 20141242
-## 2014-12-08 18:26:02 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:02 findRegions: identifying candidate regions
-## 2014-12-08 18:26:02 calculatePvalues: calculating F-statistics for permutation 41 and seed 20141243
-## 2014-12-08 18:26:03 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:03 findRegions: identifying candidate regions
-## 2014-12-08 18:26:03 calculatePvalues: calculating F-statistics for permutation 42 and seed 20141244
-## 2014-12-08 18:26:04 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:04 findRegions: identifying candidate regions
-## 2014-12-08 18:26:04 calculatePvalues: calculating F-statistics for permutation 43 and seed 20141245
-## 2014-12-08 18:26:04 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:04 findRegions: identifying candidate regions
-## 2014-12-08 18:26:04 calculatePvalues: calculating F-statistics for permutation 44 and seed 20141246
-## 2014-12-08 18:26:05 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:05 findRegions: identifying candidate regions
-## 2014-12-08 18:26:05 calculatePvalues: calculating F-statistics for permutation 45 and seed 20141247
-## 2014-12-08 18:26:06 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:06 findRegions: identifying candidate regions
-## 2014-12-08 18:26:06 calculatePvalues: calculating F-statistics for permutation 46 and seed 20141248
-## 2014-12-08 18:26:06 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:06 findRegions: identifying candidate regions
-## 2014-12-08 18:26:06 calculatePvalues: calculating F-statistics for permutation 47 and seed 20141249
-## 2014-12-08 18:26:07 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:07 findRegions: identifying candidate regions
-## 2014-12-08 18:26:07 calculatePvalues: calculating F-statistics for permutation 48 and seed 20141250
-## 2014-12-08 18:26:08 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:08 findRegions: identifying candidate regions
-## 2014-12-08 18:26:08 calculatePvalues: calculating F-statistics for permutation 49 and seed 20141251
-## 2014-12-08 18:26:09 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:09 findRegions: identifying candidate regions
-## 2014-12-08 18:26:09 calculatePvalues: calculating F-statistics for permutation 50 and seed 20141252
-## 2014-12-08 18:26:09 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:09 findRegions: identifying candidate regions
-## 2014-12-08 18:26:10 calculatePvalues: calculating F-statistics for permutation 51 and seed 20141253
-## 2014-12-08 18:26:10 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:10 findRegions: identifying candidate regions
-## 2014-12-08 18:26:10 calculatePvalues: calculating F-statistics for permutation 52 and seed 20141254
-## 2014-12-08 18:26:11 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:11 findRegions: identifying candidate regions
-## 2014-12-08 18:26:11 calculatePvalues: calculating F-statistics for permutation 53 and seed 20141255
-## 2014-12-08 18:26:12 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:12 findRegions: identifying candidate regions
-## 2014-12-08 18:26:12 calculatePvalues: calculating F-statistics for permutation 54 and seed 20141256
-## 2014-12-08 18:26:12 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:12 findRegions: identifying candidate regions
-## 2014-12-08 18:26:12 calculatePvalues: calculating F-statistics for permutation 55 and seed 20141257
-## 2014-12-08 18:26:13 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:13 findRegions: identifying candidate regions
-## 2014-12-08 18:26:13 calculatePvalues: calculating F-statistics for permutation 56 and seed 20141258
-## 2014-12-08 18:26:14 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:14 findRegions: identifying candidate regions
-## 2014-12-08 18:26:14 calculatePvalues: calculating F-statistics for permutation 57 and seed 20141259
-## 2014-12-08 18:26:14 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:14 findRegions: identifying candidate regions
-## 2014-12-08 18:26:14 calculatePvalues: calculating F-statistics for permutation 58 and seed 20141260
-## 2014-12-08 18:26:15 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:15 findRegions: identifying candidate regions
-## 2014-12-08 18:26:15 calculatePvalues: calculating F-statistics for permutation 59 and seed 20141261
-## 2014-12-08 18:26:16 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:16 findRegions: identifying candidate regions
-## 2014-12-08 18:26:16 calculatePvalues: calculating F-statistics for permutation 60 and seed 20141262
-## 2014-12-08 18:26:17 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:17 findRegions: identifying candidate regions
-## 2014-12-08 18:26:17 calculatePvalues: calculating F-statistics for permutation 61 and seed 20141263
-## 2014-12-08 18:26:18 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:18 findRegions: identifying candidate regions
-## 2014-12-08 18:26:18 calculatePvalues: calculating F-statistics for permutation 62 and seed 20141264
-## 2014-12-08 18:26:18 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:18 findRegions: identifying candidate regions
-## 2014-12-08 18:26:18 calculatePvalues: calculating F-statistics for permutation 63 and seed 20141265
-## 2014-12-08 18:26:19 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:19 findRegions: identifying candidate regions
-## 2014-12-08 18:26:19 calculatePvalues: calculating F-statistics for permutation 64 and seed 20141266
-## 2014-12-08 18:26:20 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:20 findRegions: identifying candidate regions
-## 2014-12-08 18:26:20 calculatePvalues: calculating F-statistics for permutation 65 and seed 20141267
-## 2014-12-08 18:26:20 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:20 findRegions: identifying candidate regions
-## 2014-12-08 18:26:20 calculatePvalues: calculating F-statistics for permutation 66 and seed 20141268
-## 2014-12-08 18:26:21 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:21 findRegions: identifying candidate regions
-## 2014-12-08 18:26:21 calculatePvalues: calculating F-statistics for permutation 67 and seed 20141269
-## 2014-12-08 18:26:22 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:22 findRegions: identifying candidate regions
-## 2014-12-08 18:26:22 calculatePvalues: calculating F-statistics for permutation 68 and seed 20141270
-## 2014-12-08 18:26:22 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:22 findRegions: identifying candidate regions
-## 2014-12-08 18:26:22 calculatePvalues: calculating F-statistics for permutation 69 and seed 20141271
-## 2014-12-08 18:26:23 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:23 findRegions: identifying candidate regions
-## 2014-12-08 18:26:23 calculatePvalues: calculating F-statistics for permutation 70 and seed 20141272
-## 2014-12-08 18:26:24 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:24 findRegions: identifying candidate regions
-## 2014-12-08 18:26:24 calculatePvalues: calculating F-statistics for permutation 71 and seed 20141273
-## 2014-12-08 18:26:25 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:25 findRegions: identifying candidate regions
-## 2014-12-08 18:26:25 calculatePvalues: calculating F-statistics for permutation 72 and seed 20141274
-## 2014-12-08 18:26:25 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:25 findRegions: identifying candidate regions
-## 2014-12-08 18:26:25 calculatePvalues: calculating F-statistics for permutation 73 and seed 20141275
-## 2014-12-08 18:26:26 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:26 findRegions: identifying candidate regions
-## 2014-12-08 18:26:26 calculatePvalues: calculating F-statistics for permutation 74 and seed 20141276
-## 2014-12-08 18:26:27 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:27 findRegions: identifying candidate regions
-## 2014-12-08 18:26:27 calculatePvalues: calculating F-statistics for permutation 75 and seed 20141277
-## 2014-12-08 18:26:28 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:28 findRegions: identifying candidate regions
-## 2014-12-08 18:26:28 calculatePvalues: calculating F-statistics for permutation 76 and seed 20141278
-## 2014-12-08 18:26:28 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:28 findRegions: identifying candidate regions
-## 2014-12-08 18:26:28 calculatePvalues: calculating F-statistics for permutation 77 and seed 20141279
-## 2014-12-08 18:26:29 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:29 findRegions: identifying candidate regions
-## 2014-12-08 18:26:29 calculatePvalues: calculating F-statistics for permutation 78 and seed 20141280
-## 2014-12-08 18:26:30 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:30 findRegions: identifying candidate regions
-## 2014-12-08 18:26:30 calculatePvalues: calculating F-statistics for permutation 79 and seed 20141281
-## 2014-12-08 18:26:30 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:30 findRegions: identifying candidate regions
-## 2014-12-08 18:26:30 calculatePvalues: calculating F-statistics for permutation 80 and seed 20141282
-## 2014-12-08 18:26:31 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:31 findRegions: identifying candidate regions
-## 2014-12-08 18:26:31 calculatePvalues: calculating F-statistics for permutation 81 and seed 20141283
-## 2014-12-08 18:26:32 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:32 findRegions: identifying candidate regions
-## 2014-12-08 18:26:32 calculatePvalues: calculating F-statistics for permutation 82 and seed 20141284
-## 2014-12-08 18:26:33 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:33 findRegions: identifying candidate regions
-## 2014-12-08 18:26:33 calculatePvalues: calculating F-statistics for permutation 83 and seed 20141285
-## 2014-12-08 18:26:33 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:33 findRegions: identifying candidate regions
-## 2014-12-08 18:26:34 calculatePvalues: calculating F-statistics for permutation 84 and seed 20141286
-## 2014-12-08 18:26:34 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:34 findRegions: identifying candidate regions
-## 2014-12-08 18:26:34 calculatePvalues: calculating F-statistics for permutation 85 and seed 20141287
-## 2014-12-08 18:26:35 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:35 findRegions: identifying candidate regions
-## 2014-12-08 18:26:35 calculatePvalues: calculating F-statistics for permutation 86 and seed 20141288
-## 2014-12-08 18:26:36 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:36 findRegions: identifying candidate regions
-## 2014-12-08 18:26:36 calculatePvalues: calculating F-statistics for permutation 87 and seed 20141289
-## 2014-12-08 18:26:36 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:36 findRegions: identifying candidate regions
-## 2014-12-08 18:26:36 calculatePvalues: calculating F-statistics for permutation 88 and seed 20141290
-## 2014-12-08 18:26:37 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:37 findRegions: identifying candidate regions
-## 2014-12-08 18:26:37 calculatePvalues: calculating F-statistics for permutation 89 and seed 20141291
-## 2014-12-08 18:26:38 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:38 findRegions: identifying candidate regions
-## 2014-12-08 18:26:38 calculatePvalues: calculating F-statistics for permutation 90 and seed 20141292
-## 2014-12-08 18:26:38 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:38 findRegions: identifying candidate regions
-## 2014-12-08 18:26:39 calculatePvalues: calculating F-statistics for permutation 91 and seed 20141293
-## 2014-12-08 18:26:39 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:39 findRegions: identifying candidate regions
-## 2014-12-08 18:26:39 calculatePvalues: calculating F-statistics for permutation 92 and seed 20141294
-## 2014-12-08 18:26:40 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:40 findRegions: identifying candidate regions
-## 2014-12-08 18:26:40 calculatePvalues: calculating F-statistics for permutation 93 and seed 20141295
-## 2014-12-08 18:26:41 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:41 findRegions: identifying candidate regions
-## 2014-12-08 18:26:41 calculatePvalues: calculating F-statistics for permutation 94 and seed 20141296
-## 2014-12-08 18:26:41 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:42 findRegions: identifying candidate regions
-## 2014-12-08 18:26:42 calculatePvalues: calculating F-statistics for permutation 95 and seed 20141297
-## 2014-12-08 18:26:42 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:42 findRegions: identifying candidate regions
-## 2014-12-08 18:26:42 calculatePvalues: calculating F-statistics for permutation 96 and seed 20141298
-## 2014-12-08 18:26:43 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:43 findRegions: identifying candidate regions
-## 2014-12-08 18:26:43 calculatePvalues: calculating F-statistics for permutation 97 and seed 20141299
-## 2014-12-08 18:26:44 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:44 findRegions: identifying candidate regions
-## 2014-12-08 18:26:44 calculatePvalues: calculating F-statistics for permutation 98 and seed 20141300
-## 2014-12-08 18:26:44 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:44 findRegions: identifying candidate regions
-## 2014-12-08 18:26:44 calculatePvalues: calculating F-statistics for permutation 99 and seed 20141301
-## 2014-12-08 18:26:45 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:45 findRegions: identifying candidate regions
-## 2014-12-08 18:26:45 calculatePvalues: calculating F-statistics for permutation 100 and seed 20141302
-## 2014-12-08 18:26:46 findRegions: segmenting F-stats information
-## 2014-12-08 18:26:46 findRegions: identifying candidate regions
-## 2014-12-08 18:26:46 calculatePvalues: calculating the p-values
-## 2014-12-08 18:26:46 analyzeChr: Annotating regions</pre>
+<pre >## 2014-12-09 10:56:09 analyzeChr: Pre-processing the coverage data
+## 2014-12-09 10:56:21 analyzeChr: Calculating statistics
+## 2014-12-09 10:56:21 calculateStats: calculating the F-statistics
+## 2014-12-09 10:56:22 analyzeChr: Calculating pvalues
+## 2014-12-09 10:56:22 analyzeChr: Using the following theoretical cutoff for the F-statistics 9.11630563808366
+## 2014-12-09 10:56:22 calculatePvalues: identifying data segments
+## 2014-12-09 10:56:22 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:22 findRegions: identifying candidate regions
+## 2014-12-09 10:56:22 findRegions: identifying region clusters
+## 2014-12-09 10:56:22 calculatePvalues: calculating F-statistics for permutation 1 and seed 20141203
+## 2014-12-09 10:56:23 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:23 findRegions: identifying candidate regions
+## 2014-12-09 10:56:23 calculatePvalues: calculating F-statistics for permutation 2 and seed 20141204
+## 2014-12-09 10:56:24 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:24 findRegions: identifying candidate regions
+## 2014-12-09 10:56:24 calculatePvalues: calculating F-statistics for permutation 3 and seed 20141205
+## 2014-12-09 10:56:25 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:25 findRegions: identifying candidate regions
+## 2014-12-09 10:56:25 calculatePvalues: calculating F-statistics for permutation 4 and seed 20141206
+## 2014-12-09 10:56:26 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:26 findRegions: identifying candidate regions
+## 2014-12-09 10:56:26 calculatePvalues: calculating F-statistics for permutation 5 and seed 20141207
+## 2014-12-09 10:56:26 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:26 findRegions: identifying candidate regions
+## 2014-12-09 10:56:26 calculatePvalues: calculating F-statistics for permutation 6 and seed 20141208
+## 2014-12-09 10:56:27 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:27 findRegions: identifying candidate regions
+## 2014-12-09 10:56:27 calculatePvalues: calculating F-statistics for permutation 7 and seed 20141209
+## 2014-12-09 10:56:28 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:28 findRegions: identifying candidate regions
+## 2014-12-09 10:56:28 calculatePvalues: calculating F-statistics for permutation 8 and seed 20141210
+## 2014-12-09 10:56:28 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:28 findRegions: identifying candidate regions
+## 2014-12-09 10:56:28 calculatePvalues: calculating F-statistics for permutation 9 and seed 20141211
+## 2014-12-09 10:56:29 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:29 findRegions: identifying candidate regions
+## 2014-12-09 10:56:29 calculatePvalues: calculating F-statistics for permutation 10 and seed 20141212
+## 2014-12-09 10:56:30 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:30 findRegions: identifying candidate regions
+## 2014-12-09 10:56:30 calculatePvalues: calculating F-statistics for permutation 11 and seed 20141213
+## 2014-12-09 10:56:31 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:31 findRegions: identifying candidate regions
+## 2014-12-09 10:56:31 calculatePvalues: calculating F-statistics for permutation 12 and seed 20141214
+## 2014-12-09 10:56:31 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:31 findRegions: identifying candidate regions
+## 2014-12-09 10:56:31 calculatePvalues: calculating F-statistics for permutation 13 and seed 20141215
+## 2014-12-09 10:56:32 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:32 findRegions: identifying candidate regions
+## 2014-12-09 10:56:32 calculatePvalues: calculating F-statistics for permutation 14 and seed 20141216
+## 2014-12-09 10:56:33 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:33 findRegions: identifying candidate regions
+## 2014-12-09 10:56:33 calculatePvalues: calculating F-statistics for permutation 15 and seed 20141217
+## 2014-12-09 10:56:33 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:34 findRegions: identifying candidate regions
+## 2014-12-09 10:56:34 calculatePvalues: calculating F-statistics for permutation 16 and seed 20141218
+## 2014-12-09 10:56:34 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:34 findRegions: identifying candidate regions
+## 2014-12-09 10:56:34 calculatePvalues: calculating F-statistics for permutation 17 and seed 20141219
+## 2014-12-09 10:56:35 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:35 findRegions: identifying candidate regions
+## 2014-12-09 10:56:35 calculatePvalues: calculating F-statistics for permutation 18 and seed 20141220
+## 2014-12-09 10:56:36 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:36 findRegions: identifying candidate regions
+## 2014-12-09 10:56:36 calculatePvalues: calculating F-statistics for permutation 19 and seed 20141221
+## 2014-12-09 10:56:36 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:36 findRegions: identifying candidate regions
+## 2014-12-09 10:56:36 calculatePvalues: calculating F-statistics for permutation 20 and seed 20141222
+## 2014-12-09 10:56:37 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:37 findRegions: identifying candidate regions
+## 2014-12-09 10:56:37 calculatePvalues: calculating F-statistics for permutation 21 and seed 20141223
+## 2014-12-09 10:56:38 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:38 findRegions: identifying candidate regions
+## 2014-12-09 10:56:38 calculatePvalues: calculating F-statistics for permutation 22 and seed 20141224
+## 2014-12-09 10:56:39 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:39 findRegions: identifying candidate regions
+## 2014-12-09 10:56:39 calculatePvalues: calculating F-statistics for permutation 23 and seed 20141225
+## 2014-12-09 10:56:40 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:40 findRegions: identifying candidate regions
+## 2014-12-09 10:56:40 calculatePvalues: calculating F-statistics for permutation 24 and seed 20141226
+## 2014-12-09 10:56:40 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:40 findRegions: identifying candidate regions
+## 2014-12-09 10:56:40 calculatePvalues: calculating F-statistics for permutation 25 and seed 20141227
+## 2014-12-09 10:56:41 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:41 findRegions: identifying candidate regions
+## 2014-12-09 10:56:41 calculatePvalues: calculating F-statistics for permutation 26 and seed 20141228
+## 2014-12-09 10:56:42 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:42 findRegions: identifying candidate regions
+## 2014-12-09 10:56:42 calculatePvalues: calculating F-statistics for permutation 27 and seed 20141229
+## 2014-12-09 10:56:43 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:43 findRegions: identifying candidate regions
+## 2014-12-09 10:56:43 calculatePvalues: calculating F-statistics for permutation 28 and seed 20141230
+## 2014-12-09 10:56:44 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:44 findRegions: identifying candidate regions
+## 2014-12-09 10:56:44 calculatePvalues: calculating F-statistics for permutation 29 and seed 20141231
+## 2014-12-09 10:56:45 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:45 findRegions: identifying candidate regions
+## 2014-12-09 10:56:45 calculatePvalues: calculating F-statistics for permutation 30 and seed 20141232
+## 2014-12-09 10:56:45 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:45 findRegions: identifying candidate regions
+## 2014-12-09 10:56:45 calculatePvalues: calculating F-statistics for permutation 31 and seed 20141233
+## 2014-12-09 10:56:46 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:46 findRegions: identifying candidate regions
+## 2014-12-09 10:56:46 calculatePvalues: calculating F-statistics for permutation 32 and seed 20141234
+## 2014-12-09 10:56:47 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:47 findRegions: identifying candidate regions
+## 2014-12-09 10:56:47 calculatePvalues: calculating F-statistics for permutation 33 and seed 20141235
+## 2014-12-09 10:56:48 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:48 findRegions: identifying candidate regions
+## 2014-12-09 10:56:48 calculatePvalues: calculating F-statistics for permutation 34 and seed 20141236
+## 2014-12-09 10:56:49 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:49 findRegions: identifying candidate regions
+## 2014-12-09 10:56:49 calculatePvalues: calculating F-statistics for permutation 35 and seed 20141237
+## 2014-12-09 10:56:50 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:50 findRegions: identifying candidate regions
+## 2014-12-09 10:56:50 calculatePvalues: calculating F-statistics for permutation 36 and seed 20141238
+## 2014-12-09 10:56:51 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:51 findRegions: identifying candidate regions
+## 2014-12-09 10:56:51 calculatePvalues: calculating F-statistics for permutation 37 and seed 20141239
+## 2014-12-09 10:56:52 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:52 findRegions: identifying candidate regions
+## 2014-12-09 10:56:52 calculatePvalues: calculating F-statistics for permutation 38 and seed 20141240
+## 2014-12-09 10:56:53 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:53 findRegions: identifying candidate regions
+## 2014-12-09 10:56:53 calculatePvalues: calculating F-statistics for permutation 39 and seed 20141241
+## 2014-12-09 10:56:54 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:54 findRegions: identifying candidate regions
+## 2014-12-09 10:56:54 calculatePvalues: calculating F-statistics for permutation 40 and seed 20141242
+## 2014-12-09 10:56:55 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:55 findRegions: identifying candidate regions
+## 2014-12-09 10:56:55 calculatePvalues: calculating F-statistics for permutation 41 and seed 20141243
+## 2014-12-09 10:56:56 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:56 findRegions: identifying candidate regions
+## 2014-12-09 10:56:56 calculatePvalues: calculating F-statistics for permutation 42 and seed 20141244
+## 2014-12-09 10:56:57 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:57 findRegions: identifying candidate regions
+## 2014-12-09 10:56:57 calculatePvalues: calculating F-statistics for permutation 43 and seed 20141245
+## 2014-12-09 10:56:58 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:58 findRegions: identifying candidate regions
+## 2014-12-09 10:56:58 calculatePvalues: calculating F-statistics for permutation 44 and seed 20141246
+## 2014-12-09 10:56:59 findRegions: segmenting F-stats information
+## 2014-12-09 10:56:59 findRegions: identifying candidate regions
+## 2014-12-09 10:56:59 calculatePvalues: calculating F-statistics for permutation 45 and seed 20141247
+## 2014-12-09 10:57:00 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:00 findRegions: identifying candidate regions
+## 2014-12-09 10:57:00 calculatePvalues: calculating F-statistics for permutation 46 and seed 20141248
+## 2014-12-09 10:57:01 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:01 findRegions: identifying candidate regions
+## 2014-12-09 10:57:01 calculatePvalues: calculating F-statistics for permutation 47 and seed 20141249
+## 2014-12-09 10:57:02 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:02 findRegions: identifying candidate regions
+## 2014-12-09 10:57:02 calculatePvalues: calculating F-statistics for permutation 48 and seed 20141250
+## 2014-12-09 10:57:03 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:03 findRegions: identifying candidate regions
+## 2014-12-09 10:57:03 calculatePvalues: calculating F-statistics for permutation 49 and seed 20141251
+## 2014-12-09 10:57:04 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:04 findRegions: identifying candidate regions
+## 2014-12-09 10:57:04 calculatePvalues: calculating F-statistics for permutation 50 and seed 20141252
+## 2014-12-09 10:57:05 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:05 findRegions: identifying candidate regions
+## 2014-12-09 10:57:05 calculatePvalues: calculating F-statistics for permutation 51 and seed 20141253
+## 2014-12-09 10:57:05 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:05 findRegions: identifying candidate regions
+## 2014-12-09 10:57:05 calculatePvalues: calculating F-statistics for permutation 52 and seed 20141254
+## 2014-12-09 10:57:06 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:06 findRegions: identifying candidate regions
+## 2014-12-09 10:57:06 calculatePvalues: calculating F-statistics for permutation 53 and seed 20141255
+## 2014-12-09 10:57:07 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:07 findRegions: identifying candidate regions
+## 2014-12-09 10:57:07 calculatePvalues: calculating F-statistics for permutation 54 and seed 20141256
+## 2014-12-09 10:57:07 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:07 findRegions: identifying candidate regions
+## 2014-12-09 10:57:07 calculatePvalues: calculating F-statistics for permutation 55 and seed 20141257
+## 2014-12-09 10:57:08 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:08 findRegions: identifying candidate regions
+## 2014-12-09 10:57:08 calculatePvalues: calculating F-statistics for permutation 56 and seed 20141258
+## 2014-12-09 10:57:09 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:09 findRegions: identifying candidate regions
+## 2014-12-09 10:57:09 calculatePvalues: calculating F-statistics for permutation 57 and seed 20141259
+## 2014-12-09 10:57:09 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:09 findRegions: identifying candidate regions
+## 2014-12-09 10:57:09 calculatePvalues: calculating F-statistics for permutation 58 and seed 20141260
+## 2014-12-09 10:57:10 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:10 findRegions: identifying candidate regions
+## 2014-12-09 10:57:10 calculatePvalues: calculating F-statistics for permutation 59 and seed 20141261
+## 2014-12-09 10:57:11 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:11 findRegions: identifying candidate regions
+## 2014-12-09 10:57:11 calculatePvalues: calculating F-statistics for permutation 60 and seed 20141262
+## 2014-12-09 10:57:11 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:11 findRegions: identifying candidate regions
+## 2014-12-09 10:57:11 calculatePvalues: calculating F-statistics for permutation 61 and seed 20141263
+## 2014-12-09 10:57:12 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:12 findRegions: identifying candidate regions
+## 2014-12-09 10:57:12 calculatePvalues: calculating F-statistics for permutation 62 and seed 20141264
+## 2014-12-09 10:57:13 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:13 findRegions: identifying candidate regions
+## 2014-12-09 10:57:13 calculatePvalues: calculating F-statistics for permutation 63 and seed 20141265
+## 2014-12-09 10:57:14 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:14 findRegions: identifying candidate regions
+## 2014-12-09 10:57:14 calculatePvalues: calculating F-statistics for permutation 64 and seed 20141266
+## 2014-12-09 10:57:15 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:15 findRegions: identifying candidate regions
+## 2014-12-09 10:57:15 calculatePvalues: calculating F-statistics for permutation 65 and seed 20141267
+## 2014-12-09 10:57:15 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:15 findRegions: identifying candidate regions
+## 2014-12-09 10:57:15 calculatePvalues: calculating F-statistics for permutation 66 and seed 20141268
+## 2014-12-09 10:57:16 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:16 findRegions: identifying candidate regions
+## 2014-12-09 10:57:16 calculatePvalues: calculating F-statistics for permutation 67 and seed 20141269
+## 2014-12-09 10:57:17 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:17 findRegions: identifying candidate regions
+## 2014-12-09 10:57:17 calculatePvalues: calculating F-statistics for permutation 68 and seed 20141270
+## 2014-12-09 10:57:17 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:17 findRegions: identifying candidate regions
+## 2014-12-09 10:57:17 calculatePvalues: calculating F-statistics for permutation 69 and seed 20141271
+## 2014-12-09 10:57:18 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:18 findRegions: identifying candidate regions
+## 2014-12-09 10:57:18 calculatePvalues: calculating F-statistics for permutation 70 and seed 20141272
+## 2014-12-09 10:57:19 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:19 findRegions: identifying candidate regions
+## 2014-12-09 10:57:19 calculatePvalues: calculating F-statistics for permutation 71 and seed 20141273
+## 2014-12-09 10:57:19 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:19 findRegions: identifying candidate regions
+## 2014-12-09 10:57:19 calculatePvalues: calculating F-statistics for permutation 72 and seed 20141274
+## 2014-12-09 10:57:20 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:20 findRegions: identifying candidate regions
+## 2014-12-09 10:57:20 calculatePvalues: calculating F-statistics for permutation 73 and seed 20141275
+## 2014-12-09 10:57:21 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:21 findRegions: identifying candidate regions
+## 2014-12-09 10:57:21 calculatePvalues: calculating F-statistics for permutation 74 and seed 20141276
+## 2014-12-09 10:57:22 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:22 findRegions: identifying candidate regions
+## 2014-12-09 10:57:22 calculatePvalues: calculating F-statistics for permutation 75 and seed 20141277
+## 2014-12-09 10:57:22 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:22 findRegions: identifying candidate regions
+## 2014-12-09 10:57:22 calculatePvalues: calculating F-statistics for permutation 76 and seed 20141278
+## 2014-12-09 10:57:23 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:23 findRegions: identifying candidate regions
+## 2014-12-09 10:57:23 calculatePvalues: calculating F-statistics for permutation 77 and seed 20141279
+## 2014-12-09 10:57:23 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:24 findRegions: identifying candidate regions
+## 2014-12-09 10:57:24 calculatePvalues: calculating F-statistics for permutation 78 and seed 20141280
+## 2014-12-09 10:57:24 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:24 findRegions: identifying candidate regions
+## 2014-12-09 10:57:24 calculatePvalues: calculating F-statistics for permutation 79 and seed 20141281
+## 2014-12-09 10:57:25 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:25 findRegions: identifying candidate regions
+## 2014-12-09 10:57:25 calculatePvalues: calculating F-statistics for permutation 80 and seed 20141282
+## 2014-12-09 10:57:26 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:26 findRegions: identifying candidate regions
+## 2014-12-09 10:57:26 calculatePvalues: calculating F-statistics for permutation 81 and seed 20141283
+## 2014-12-09 10:57:26 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:26 findRegions: identifying candidate regions
+## 2014-12-09 10:57:26 calculatePvalues: calculating F-statistics for permutation 82 and seed 20141284
+## 2014-12-09 10:57:27 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:27 findRegions: identifying candidate regions
+## 2014-12-09 10:57:27 calculatePvalues: calculating F-statistics for permutation 83 and seed 20141285
+## 2014-12-09 10:57:28 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:28 findRegions: identifying candidate regions
+## 2014-12-09 10:57:28 calculatePvalues: calculating F-statistics for permutation 84 and seed 20141286
+## 2014-12-09 10:57:28 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:28 findRegions: identifying candidate regions
+## 2014-12-09 10:57:28 calculatePvalues: calculating F-statistics for permutation 85 and seed 20141287
+## 2014-12-09 10:57:29 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:29 findRegions: identifying candidate regions
+## 2014-12-09 10:57:29 calculatePvalues: calculating F-statistics for permutation 86 and seed 20141288
+## 2014-12-09 10:57:30 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:30 findRegions: identifying candidate regions
+## 2014-12-09 10:57:30 calculatePvalues: calculating F-statistics for permutation 87 and seed 20141289
+## 2014-12-09 10:57:31 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:31 findRegions: identifying candidate regions
+## 2014-12-09 10:57:31 calculatePvalues: calculating F-statistics for permutation 88 and seed 20141290
+## 2014-12-09 10:57:31 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:31 findRegions: identifying candidate regions
+## 2014-12-09 10:57:31 calculatePvalues: calculating F-statistics for permutation 89 and seed 20141291
+## 2014-12-09 10:57:32 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:32 findRegions: identifying candidate regions
+## 2014-12-09 10:57:32 calculatePvalues: calculating F-statistics for permutation 90 and seed 20141292
+## 2014-12-09 10:57:33 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:33 findRegions: identifying candidate regions
+## 2014-12-09 10:57:33 calculatePvalues: calculating F-statistics for permutation 91 and seed 20141293
+## 2014-12-09 10:57:33 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:33 findRegions: identifying candidate regions
+## 2014-12-09 10:57:33 calculatePvalues: calculating F-statistics for permutation 92 and seed 20141294
+## 2014-12-09 10:57:34 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:34 findRegions: identifying candidate regions
+## 2014-12-09 10:57:34 calculatePvalues: calculating F-statistics for permutation 93 and seed 20141295
+## 2014-12-09 10:57:35 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:35 findRegions: identifying candidate regions
+## 2014-12-09 10:57:35 calculatePvalues: calculating F-statistics for permutation 94 and seed 20141296
+## 2014-12-09 10:57:35 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:35 findRegions: identifying candidate regions
+## 2014-12-09 10:57:35 calculatePvalues: calculating F-statistics for permutation 95 and seed 20141297
+## 2014-12-09 10:57:36 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:36 findRegions: identifying candidate regions
+## 2014-12-09 10:57:36 calculatePvalues: calculating F-statistics for permutation 96 and seed 20141298
+## 2014-12-09 10:57:37 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:37 findRegions: identifying candidate regions
+## 2014-12-09 10:57:37 calculatePvalues: calculating F-statistics for permutation 97 and seed 20141299
+## 2014-12-09 10:57:38 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:38 findRegions: identifying candidate regions
+## 2014-12-09 10:57:38 calculatePvalues: calculating F-statistics for permutation 98 and seed 20141300
+## 2014-12-09 10:57:38 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:38 findRegions: identifying candidate regions
+## 2014-12-09 10:57:39 calculatePvalues: calculating F-statistics for permutation 99 and seed 20141301
+## 2014-12-09 10:57:39 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:39 findRegions: identifying candidate regions
+## 2014-12-09 10:57:39 calculatePvalues: calculating F-statistics for permutation 100 and seed 20141302
+## 2014-12-09 10:57:40 findRegions: segmenting F-stats information
+## 2014-12-09 10:57:40 findRegions: identifying candidate regions
+## 2014-12-09 10:57:40 calculatePvalues: calculating the p-values
+## 2014-12-09 10:57:40 analyzeChr: Annotating regions</pre>
 
 <pre >## Matching regions to genes.
 ## nearestgene: loading bumphunter hg19 transcript database
@@ -604,7 +575,7 @@ system.time(
 ## AnnotatingDone.</pre>
 
 <pre >##    user  system elapsed 
-##  98.739  10.009 108.961</pre>
+## 101.531   8.735 110.403</pre>
 
 </article></slide><slide class=''><hgroup><h2>Explore results</h2></hgroup><article  id="explore-results" class="smaller">
 
@@ -633,23 +604,23 @@ system.time(
 system.time(gs &lt;- makeGenomicState(txdb=TxDb.Hsapiens.UCSC.hg19.knownGene, chrs=&#39;chr22&#39;))</pre>
 
 <pre >##    user  system elapsed 
-##  23.569   1.239  24.972</pre>
+##  21.116   1.128  22.262</pre>
 
 <pre class = 'prettyprint lang-r'>## Merge results from different chrs
 mergeResults(&#39;chr22&#39;, genomicState = gs$fullGenome, optionsStats = res$optionsStats)</pre>
 
-<pre >## 2014-12-08 18:27:31 mergeResults: Saving options used
-## 2014-12-08 18:27:31 Loading chromosome chr22
-## 2014-12-08 18:27:31 mergeResults: calculating FWER
-## 2014-12-08 18:27:31 mergeResults: Saving fullNullSummary
-## 2014-12-08 18:27:31 mergeResults: Re-calculating the p-values
-## 2014-12-08 18:27:31 mergeResults: Saving fullRegions
-## 2014-12-08 18:27:31 mergeResults: assigning genomic states
-## 2014-12-08 18:27:32 annotateRegions: counting
-## 2014-12-08 18:27:32 annotateRegions: annotating
-## 2014-12-08 18:27:32 mergeResults: Saving fullAnnotatedRegions
-## 2014-12-08 18:27:32 mergeResults: Saving fullFstats
-## 2014-12-08 18:27:32 mergeResults: Saving fullTime</pre>
+<pre >## 2014-12-09 10:58:22 mergeResults: Saving options used
+## 2014-12-09 10:58:22 Loading chromosome chr22
+## 2014-12-09 10:58:22 mergeResults: calculating FWER
+## 2014-12-09 10:58:22 mergeResults: Saving fullNullSummary
+## 2014-12-09 10:58:22 mergeResults: Re-calculating the p-values
+## 2014-12-09 10:58:22 mergeResults: Saving fullRegions
+## 2014-12-09 10:58:23 mergeResults: assigning genomic states
+## 2014-12-09 10:58:23 annotateRegions: counting
+## 2014-12-09 10:58:23 annotateRegions: annotating
+## 2014-12-09 10:58:23 mergeResults: Saving fullAnnotatedRegions
+## 2014-12-09 10:58:23 mergeResults: Saving fullFstats
+## 2014-12-09 10:58:23 mergeResults: Saving fullTime</pre>
 
 </article></slide><slide class=''><hgroup><h2>Main results</h2></hgroup><article  id="main-results" class="smaller">
 
@@ -735,11 +706,11 @@ knit(&#39;index.Rmd&#39;, tangle = TRUE)</pre>
 
 <p>Date this tutorial was generated.</p>
 
-<pre >## [1] &quot;2014-12-08 18:27:32 EST&quot;</pre>
+<pre >## [1] &quot;2014-12-09 10:58:23 EST&quot;</pre>
 
 <p>Wallclock time spent running this tutorial.</p>
 
-<pre >## Time difference of 3.077 mins</pre>
+<pre >## Time difference of 2.733 mins</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4" class="smaller">
 

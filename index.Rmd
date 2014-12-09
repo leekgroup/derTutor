@@ -203,14 +203,6 @@ sampleDepths <- sampleDepth(collapsedFull, probs = 1)
 
 
 ```{r 'models', eval = evalDER}
-summary(sampleDepths)
-
-## Calculate library size adjustment
-system.time( collapsedFull <- collapseFullCoverage(fullCov) )
-lapply(collapsedFull[[1]], head)
-sampleDepths <- sampleDepth(collapsedFull, probs = 1)
-summary(sampleDepths)
-
 ## Create models
 groupInfo <- factor(rep(c('A', 'B', 'C'), each = 10))
 models <- makeModels(sampleDepths = sampleDepths, testvars = groupInfo)
